@@ -1,6 +1,7 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import SignUp from './pages/SignUp';
 import SignIn from './pages/SignIn';
+import Main from './pages/Main';
 import { useState } from 'react';
 import { createContext } from 'react';
 
@@ -12,7 +13,7 @@ export default function App() {
         <BrowserRouter>
         <authContext.Provider value={{auth, setAuth}}>
             <Routes>
-                <Route path="/" element={<SignUp/>}/>
+                <Route path="/" element={<Main/>}/>
                 <Route path="/sign-in" element={<SignIn/>}/>
                
             </Routes>
