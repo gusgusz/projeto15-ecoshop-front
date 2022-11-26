@@ -14,8 +14,8 @@ export default function SignIn() {
   const [isLoading, setIsLoading] = useState(false);
 
   const [form, setForm] = useState({
+    name: "",
     email: "",
-    password: "",
   });
 
   function handleChange(e) {
@@ -30,7 +30,7 @@ export default function SignIn() {
     promise.then((response) => {
       setIsLoading(false);
       setAuth(response.data);
-      navigate("/products");
+      navigate("/");
     });
     promise.catch((err) => {
       setIsLoading(false);
@@ -49,22 +49,21 @@ export default function SignIn() {
           <h1>Login</h1>
 
           <input
+            name="name"
+            value={form.name}
+            onChange={handleChange}
+            disabled={isLoading}
+            type="text"
+            placeholder="Nome"
+            required
+          />
+          <input
             name="email"
             value={form.email}
             onChange={handleChange}
             disabled={isLoading}
             type="email"
             placeholder="E-mail"
-            required
-          />
-
-          <input
-            name="password"
-            value={form.password}
-            onChange={handleChange}
-            disabled={isLoading}
-            type="password"
-            placeholder="Senha"
             required
           />
 
