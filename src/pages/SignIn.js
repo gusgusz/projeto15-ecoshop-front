@@ -23,6 +23,7 @@ export default function SignIn() {
       ...form,
       [e.target.name]: e.target.value,
     });
+
     console.log(form);
   }
 

@@ -3,16 +3,21 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import Url from "../services/Api.js";
 import axios from "axios";
+import { authContext } from "../App";
+import { useContext } from "react";
 
 export default function Products() {
+  const { auth } = useContext(authContext);
   const [listProducts, setListProducts] = useState(undefined);
 
   useEffect(() => {
     const promise = axios.get(`${Url}/products`);
 
     promise.then((res) => {
-      console.log(res.data);
-      setListProducts(res.data);
+      console.log(res.data.products);
+      setListProducts(res.data.products);
+      console.log("auth");
+      console.log(auth);
     });
 
     promise.catch((err) => {
@@ -27,7 +32,23 @@ export default function Products() {
   return (
     <Content>
       <Logo />
-      <ListContainer></ListContainer>
+
+      <ListContainer>
+        {listProducts.map((p) => (
+          <div>
+            <img src={p.img} alt="imagem" />
+            <span> {p.describe}</span>
+            <p>R$ {p.price}</p>
+            <button
+              onClick={() => {
+                console.log(p.price);
+              }}
+            >
+              Adicionar ao Carrinho
+            </button>
+          </div>
+        ))}
+      </ListContainer>
     </Content>
   );
 }
@@ -39,10 +60,7 @@ const Content = styled.div`
   align-items: center;
 
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+
   justify-content: center;
   align-items: center;
   background-color: #34d97e;
@@ -50,36 +68,42 @@ const Content = styled.div`
 `;
 
 const ListContainer = styled.div`
-  margin: 20px 30px;
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  box-sizing: border-box;
+
   div {
-    background-color: white;
+    box-sizing: border-box;
+    background-color: #057a55;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    gap: 5px;
     align-items: center;
+    justify-content: flex-end;
+    width: 300px;
+    height: 300px;
   }
-  img {
-    width: 150px;
-    height: 150px;
+  div img {
+    width: 100px;
+    height: 100px;
+  }
+  div p {
     display: flex;
     justify-content: center;
     align-items: center;
   }
-  p {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  div span {
   }
   button {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 130px;
-    height: 30px;
+    width: 100px;
+    height: 50px;
     border-radius: 5px;
-    margin-bottom: 5px;
+    margin-bottom: 0px;
   }
 `;
