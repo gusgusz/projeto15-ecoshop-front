@@ -15,6 +15,7 @@ export default function App() {
             <Routes>
                 <Route path="/sign-up" element={<SignUp/>}/>
                 <Route path="/sign-in" element={<SignIn/>}/>
+                <Route path="/products" element={<Main/>}/>
                
             </Routes>
             </authContext.Provider>

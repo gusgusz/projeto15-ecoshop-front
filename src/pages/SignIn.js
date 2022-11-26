@@ -20,7 +20,6 @@ export default function SignIn() {
 
     function handleChange(e) {
         setForm({ ...form, [e.target.name]: e.target.value });
-        console.log(form)
       }
 
     function handleSubmit() {
@@ -30,6 +29,7 @@ export default function SignIn() {
         const promise = axios.post(`${Url}/sign-in`, { ...form });
        
         promise.then((response) => {
+            console.log("entrei no handle", form)
           setIsLoading(false);
           console.log('user', response.data);
           setAuth(response.data);
@@ -38,9 +38,8 @@ export default function SignIn() {
         promise.catch((err) => {
           setIsLoading(false);
     
-          alert(err.response.message);
+          alert("deu ruim man", err.response);
         });
-        console.log(form);
       }
     
 
@@ -57,7 +56,7 @@ export default function SignIn() {
                     
                     <input name = 'email' value={form.email} onChange={handleChange} disabled={isLoading}  type="email" placeholder="E-mail" required/>
                    <input name = 'password' value={form.password} onChange={handleChange} disabled={isLoading} type="password" placeholder="Senha" required/>
-                    <button type="submit" disabled={isLoading}  onClick={handleSubmit}>Entrar</button>
+                    <button  disabled={isLoading}  onClick={handleSubmit}>Entrar</button>
              </Form>
              <Link to="/sign-up">
              <span>Ainda não tem cadastro? Faça aqui!</span>
