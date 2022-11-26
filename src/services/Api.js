@@ -1,4 +1,2 @@
-
- 
-const Url = "http://localhost:4000";
-    export default  Url;
+const Url = "https://ecoshop-api.onrender.com";
+export default Url;
