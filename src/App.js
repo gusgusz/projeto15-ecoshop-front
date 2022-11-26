@@ -13,7 +13,7 @@ export default function App() {
         <BrowserRouter>
         <authContext.Provider value={{auth, setAuth}}>
             <Routes>
-                <Route path="/" element={<Main/>}/>
+                <Route path="/sign-up" element={<SignUp/>}/>
                 <Route path="/sign-in" element={<SignIn/>}/>
                
             </Routes>
