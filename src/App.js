@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
-import Products from "./pages/Products";
 import { useState } from "react";
 import { createContext } from "react";
 import HomePage from "./pages/HomePage";
@@ -37,12 +36,7 @@ export default function App() {
               />
             }
           />
-          <Route
-            path="/products"
-            element={
-              <Products cartItens={cartItens} setCartItens={setCartItens} />
-            }
-          />
+
           <Route path="/sign-in" element={<SignIn />} />
           <Route path="/sign-up" element={<SignUp />} />
         </Routes>
