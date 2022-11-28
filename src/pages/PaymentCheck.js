@@ -32,12 +32,18 @@ export default function PaymentCheck() {
       alert("Você precisa adicionar produtos para finalizar a compra");
       return;
     }
+    if(!paymentForm){
+      alert("Selecione uma forma de pagamento");
+      return;
+    }
     if(paymentForm){
       const promisse = axios.post(`${Url}/payment`, {
         auth,
         total,
       paymentForm});
       alert("Compra finalizada com sucesso!");
+      setCartItens([]);
+      navigate("/");
       return;
     }
 
@@ -175,6 +181,7 @@ const Adress = styled.div`
   height: 80px;
   background-color: #fff;
   padding: 6px;
+  overflow-y: scroll;
 
 `;
 const Pay = styled.div`
