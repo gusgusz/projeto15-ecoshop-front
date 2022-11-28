@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { authContext } from '../App';
 import { useContext} from 'react';
 import axios from "axios";
-import Url from "../services/Api";
+import Url from "../services/Api.js";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
@@ -45,18 +45,25 @@ export default function PaymentCheck() {
       return;
     }
     if(paymentForm){
+      console.log("entrou no if do paymentForm");
+     
       const promisse = axios.post(`${Url}/payment`, {
         auth,
         total,
       paymentForm});
       promisse.then((response) => {
-        alert("Compra finalizada com sucesso!");
+        console.log("entrei no then do payment",{
+          auth,
+           cartItens,
+           total,
+         paymentForm})
         setCartItens([]);
         navigate("/");
+        alert("Compra finalizada com sucesso!");
         return;
       });
       promisse.catch((err) => {
-        console.log(err);
+        console.log("Entrei no catch do payment",err);
       });
     }
 
@@ -69,7 +76,6 @@ export default function PaymentCheck() {
       return tot += parseInt(p.price);
     });
     setTotal(tot);
-    console.log(tot);
   };
   
     return (
@@ -162,7 +168,8 @@ const Content = styled.div`
   position: absolute;
   align-items: center;
   background-color: #34d97e;
-  overflow: scroll;
+  overflow-y: scroll;
+  
 
   header {
     width: 100%;
@@ -207,13 +214,16 @@ const Content = styled.div`
   }
 
   button{
-    width: 120px;
-    height: 40px;
+    width: 40%;
+    height: 80px;
     border-radius: 10px;
     border: none;
     background-color: #fff;
     margin: 20px 0;
     cursor: pointer;
+  }
+  button:hover{
+    background-color: brown;
   }
 `;
 

@@ -83,10 +83,15 @@ export default function HomePage() {
 
 const Content = styled.div`
   width: 100%;
+  position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
 
   header {
     width: 100%;
     height: 60px;
+    margin-bottom: 8px;
     display: flex;
     align-items: center;
     justify-content: space-between;
