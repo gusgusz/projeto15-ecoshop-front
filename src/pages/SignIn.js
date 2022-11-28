@@ -20,7 +20,6 @@ export default function SignIn() {
   });
 
   function handleChange(e) {
-    
     setForm({
       ...form,
       [e.target.name]: e.target.value,
@@ -38,10 +37,7 @@ export default function SignIn() {
       setIsLoading(false);
       console.log("entei no then do login", response.data);
       setAuth(response.data);
-<<<<<<< HEAD
-=======
       setVisibility("hidden");
->>>>>>> 353129bdcfe216aa74d832fecf80c5990c476433
       navigate("/");
     });
     promise.catch((err) => {
