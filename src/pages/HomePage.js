@@ -11,6 +11,11 @@ export default function HomePage() {
   const {cartItens} = useContext(authContext);
   const {setCartItens} = useContext(authContext);
   const [listProducts, setListProducts] = useState([]);
+  const { setVisibility } = useContext(authContext);
+
+  function handleMenu() {
+    setVisibility("visible");
+  }
 
   useEffect(() => {
     const promise = axios.get(`${Url}/products`);
@@ -24,8 +29,6 @@ export default function HomePage() {
       console.log(err.response.data);
     });
   }, []);
-
-  function addCart() {}
 
   return (
     <Content>
@@ -46,12 +49,7 @@ export default function HomePage() {
           </div>
           </Link>
           <div className="menu">
-            <ion-icon
-              onClick={() => {
-                console.log("hi");
-              }}
-              name="menu-outline"
-            ></ion-icon>
+            <ion-icon onClick={handleMenu} name="menu-outline"></ion-icon>
           </div>
         </div>
       </header>
@@ -80,6 +78,8 @@ export default function HomePage() {
           </div>
         ))}
       </ListContainer>
+
+      <Menu />
     </Content>
   );
 }
