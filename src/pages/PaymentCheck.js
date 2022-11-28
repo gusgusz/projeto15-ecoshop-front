@@ -5,6 +5,7 @@ import { useContext} from 'react';
 import axios from "axios";
 import Url from "../services/Api";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 
@@ -18,20 +19,27 @@ export default function PaymentCheck() {
   
   const [paymentForm, setPaymentForm] = useState(false);
 
-  useEffect(getTotal, []);
+  useEffect(getTotal, [cartItens]);
 
 
   const [total, setTotal] = useState(0);
 
+  function deleteProduct(index){
+    const newCart = cartItens.filter((item, i) => i !== index);
+    setCartItens(newCart);
+   
+  }
+
   function tryPayment(){
-    if(!auth){
-      navigate("/sign-in");
-      return;
-    } 
+   
     if(total === 0){
       alert("Você precisa adicionar produtos para finalizar a compra");
       return;
     }
+    if(!auth){
+      navigate("/sign-in");
+      return;
+    } 
     if(!paymentForm){
       alert("Selecione uma forma de pagamento");
       return;
@@ -61,6 +69,20 @@ export default function PaymentCheck() {
   
     return (
         <Content>
+               <header>
+        <div className="logo">
+          <Eco>ECO</Eco>
+          <Shop>SHOP</Shop>
+        </div>
+
+        <div className="right">
+         
+          <Link to="/">
+          <ion-icon name="home-outline"></ion-icon>
+          </Link>
+         
+        </div>
+      </header>
         <h1>Confirme sua compra</h1>
         <Prod>
           {cartItens.map((p,index) => {
@@ -68,8 +90,8 @@ export default function PaymentCheck() {
               <div index>
                 <span> {p.name}</span>
                 <p>R$ {p.price}</p>
-                <div>
-                <ion-icon name="add-circle-outline"></ion-icon>
+                <div onClick={() => deleteProduct(index)}>
+                
                 <ion-icon name="trash-outline"></ion-icon>
                 </div>
                 
@@ -141,6 +163,48 @@ const Content = styled.div`
   background-color: #34d97e;
   overflow: scroll;
 
+  header {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+
+  }
+
+  p {
+    font-size: 14px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+
+  .right {
+    display: flex;
+    align-items: center;
+    font-size: 28px;
+    opacity: 0.9;
+    font-weight: 600;
+    gap: 15px;
+    cursor: pointer;
+    ion-icon[name="cart-outline"] {
+      cursor: pointer;
+    }
+    ion-icon[name="menu-outline"] {
+      cursor: pointer;
+    }
+  }
+  .cart {
+    display: flex;
+    align-items: center;
+  }
+  .menu {
+    display: flex;
+    align-items: center;
+  }
+
   button{
     width: 120px;
     height: 40px;
@@ -148,6 +212,7 @@ const Content = styled.div`
     border: none;
     background-color: #fff;
     margin: 20px 0;
+    cursor: pointer;
   }
 `;
 
@@ -156,6 +221,7 @@ const Prod = styled.div`
   background-color: #fff;
   width: 80%;
   height: 300px;
+  border-radius: 20px;
   
   flex-direction: column;
   padding: 20px;
@@ -178,10 +244,13 @@ const Adress = styled.div`
   display: flex;
   flex-direction: column;
   width: 85%;
-  height: 80px;
+  height: 160px;
   background-color: #fff;
   padding: 6px;
   overflow-y: scroll;
+  border-radius: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 
 `;
 const Pay = styled.div`
@@ -194,6 +263,7 @@ const Pay = styled.div`
   margin-top: 20px;
   margin-bottom: 20px;
   flex-direction: column;
+  border-radius: 20px;
 
   div{
     display: flex;
@@ -210,6 +280,10 @@ const Pay = styled.div`
       height: 70px;
       margin-left: 30px;
       border: 1px solid black;
+      input{
+        cursor: pointer;
+      }
+     
 
     }
     div:hover{
@@ -217,4 +291,14 @@ const Pay = styled.div`
     }
   }
 
+`;
+const Eco = styled.h1`
+  font-size: 19px;
+  color: green;
+
+  font-family: "Bungee Shade", cursive;
+`;
+const Shop = styled.h1`
+  font-size: 22px;
+  color: brown;
 `;
