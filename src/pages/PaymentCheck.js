@@ -250,6 +250,9 @@ const Prod = styled.div`
      p{
       margin: 0 29px;
      }
+     ion-icon{
+      cursor: pointer;
+     }
     }
     
   }
