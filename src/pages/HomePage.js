@@ -73,6 +73,7 @@ export default function HomePage() {
               Adicionar ao Carrinho
             </button>
           </div>
+          
         ))}
       </ListContainer>
 
@@ -161,6 +162,7 @@ const ListContainer = styled.div`
     width: 300px;
     height: 300px;
     margin: 10px;
+ 
   }
   div img {
     width: 100px;
@@ -170,6 +172,7 @@ const ListContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    
   }
   div span {
   }

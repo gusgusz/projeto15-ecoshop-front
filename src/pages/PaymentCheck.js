@@ -100,10 +100,10 @@ export default function PaymentCheck() {
             return (
               <div index>
                 <span> {p.name}</span>
-                <p>R$ {p.price}</p>
-                <div onClick={() => deleteProduct(index)}>
                 
-                <ion-icon name="trash-outline"></ion-icon>
+                <div>
+                <p>R$ {p.price}</p>
+                <ion-icon onClick={() => deleteProduct(index)} name="trash-outline"></ion-icon>
                 </div>
                 
               </div>
@@ -165,11 +165,11 @@ const Content = styled.div`
   left: 0;
   right: 0;
   bottom: 0;
-  position: absolute;
+  position: fixed;
   align-items: center;
   background-color: #34d97e;
   overflow-y: scroll;
-  
+
 
   header {
     width: 100%;
@@ -178,6 +178,9 @@ const Content = styled.div`
     align-items: center;
     justify-content: space-between;
     background-color: #fff;
+    position: fixed;
+    z-index: 1;
+    
 
   }
 
@@ -237,17 +240,23 @@ const Prod = styled.div`
   flex-direction: column;
   padding: 20px;
   position: relative;
-  overflow-y: scroll;
+  overflow-y: visible;
 
   div{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    div{
+     p{
+      margin: 0 29px;
+     }
+    }
     
   }
   h3{
     bottom: 0;
     right: 8px;
+   
   }
 `;
 
@@ -258,7 +267,7 @@ const Adress = styled.div`
   height: 160px;
   background-color: #fff;
   padding: 6px;
-  overflow-y: scroll;
+  overflow-y: visible;
   border-radius: 20px;
   padding-top: 20px;
   padding-bottom: 20px;
