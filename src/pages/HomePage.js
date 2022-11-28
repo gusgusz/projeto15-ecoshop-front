@@ -87,6 +87,7 @@ const Content = styled.div`
     top: 0;
     left: 0;
     right: 0;
+    background-color: #34d97e;
 
   header {
     width: 100%;
@@ -95,7 +96,7 @@ const Content = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #34d97e;
+    background-color: #fff;
   }
 
   p {
@@ -151,7 +152,7 @@ const ListContainer = styled.div`
 
   div {
     box-sizing: border-box;
-    background-color: #057a55;
+    background-color:  	#90EE90;
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -159,6 +160,7 @@ const ListContainer = styled.div`
     justify-content: flex-end;
     width: 300px;
     height: 300px;
+    margin: 10px;
   }
   div img {
     width: 100px;
