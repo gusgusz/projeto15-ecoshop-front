@@ -79,10 +79,10 @@ export default function PaymentCheck() {
           {auth ? 
           <>
           <div>
-          <p>Rua: {auth.adress.street}</p>
-          <p>Número: {auth.adress.number}</p>
-          <p>Complemento: {auth.adress.complement}</p>
-          <p>Cep: {auth.adress.cep}</p>
+          <p>Rua: {auth.checkUser.adress.street}</p>
+          <p>Número: {auth.checkUser.adress.number}</p>
+          <p>Complemento: {auth.checkUser.adress.complement}</p>
+          <p>Cep: {auth.checkUser.adress.cep}</p>
           </div>
           </>
           :
