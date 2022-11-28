@@ -93,11 +93,12 @@ const Content = styled.div`
   header {
     width: 100%;
     height: 60px;
-    margin-bottom: 8px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     background-color: #fff;
+    position: fixed;
+    z-index: 1;
   }
 
   p {
@@ -150,6 +151,7 @@ const ListContainer = styled.div`
   justify-content: center;
   gap: 3px;
   box-sizing: border-box;
+  margin-top: 70px;
 
   div {
     box-sizing: border-box;
