@@ -138,11 +138,7 @@ export default function PaymentCheck() {
             <input class="w3-radio" type="radio" name="gender" value="male" ></input>
           
           </div>
-          <div onClick={() => {setPaymentForm("Paypal")}}>
-            <ion-icon name="logo-paypal"></ion-icon>
-            <p>Paypal</p>
-            <input class="w3-radio" type="radio" name="gender" value="male" ></input>
-          </div>
+        
           </div>
         </Pay>
 

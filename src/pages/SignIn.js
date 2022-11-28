@@ -78,10 +78,11 @@ export default function SignIn() {
             Entrar
           </button>
         </Form>
-        <Link to="/">
+       
+      </div>
+      <Link to="/sign-up">
           <span>Ainda não tem cadastro? Faça aqui!</span>
         </Link>
-      </div>
     </Content>
   );
 }
@@ -99,7 +100,7 @@ const Content = styled.div`
   background-color: #34d97e;
 
   .request {
-    background-color: #008f41;
+    background-color: #fff;
     display: flex;
     flex-direction: column;
     width: 80%;
@@ -125,7 +126,7 @@ const Form = styled.form`
   height: 90%;
 
   h1 {
-    color: #ff7975;
+    
     align-self: center;
   }
   input {

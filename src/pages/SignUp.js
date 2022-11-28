@@ -49,12 +49,17 @@ export default function SignUp() {
   }
 
   return (
+    <>
+     
+    
     <Content>
-      <div className="request">
-        <Logo />
-
+    <Logo />
+    <div className="request">
+     
+    <h1>Cadastro</h1>
+        
         <Form onSubmit={handleSubmit}>
-          <h1>Cadastro</h1>
+         
 
           <input
             name="name"
@@ -146,37 +151,46 @@ export default function SignUp() {
             placeholder="Confirme a senha"
             required
           />
-          <button disabled={isLoading} type="submit">
+
+<button disabled={isLoading} type="submit">
             Cadastrar
           </button>
+      
+         
         </Form>
-        <Link to="/sign-in">
+    
+      </div>
+      <Link to="/sign-in">
           <span>Já tem o cadastro? Faça login!!!</span>
         </Link>
-      </div>
     </Content>
+    </>
   );
 }
 
 const Content = styled.div`
+
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 0;
+  height: 100%;
+
   left: 0;
   right: 0;
   bottom: 0;
-  justify-content: center;
   align-items: center;
   background-color: #34d97e;
-  overflow-y: scroll;
+  overflow: scroll;
+
+
 
   .request {
-    background-color: #008f41;
+    background-color: #fff;
     display: flex;
     flex-direction: column;
-    width: 80%;
-
+    width: 78%;
+    height: 88%;
+    overflow-y: scroll;
     align-items: center;
 
     span {
@@ -193,7 +207,7 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   width: 90%;
-  height: 600px;
+  
 
   h1 {
     color: #ff7975;
@@ -214,7 +228,7 @@ const Form = styled.form`
     border-radius: 5px;
     align-self: center;
     border: 1px solid #34d97e;
-    margin-top: 10px;
+    margin: 20px 0;;
     cursor: pointer;
   }
   button:hover {

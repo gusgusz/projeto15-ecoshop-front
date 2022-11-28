@@ -26,6 +26,8 @@ const Content = styled.div`
     background-color: white;
     padding: 10px;
     margin: 20px;
+  
+    
 
 
     img{
