@@ -5,6 +5,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Url from "../services/Api.js";
 import axios from "axios";
+import { authContext } from "../App";
+import { useContext } from "react";
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -20,7 +22,7 @@ export default function SignUp() {
     password: "",
     repeatPassword: "",
   });
-
+  const { setVisibility } = useContext(authContext);
   const [isLoading, setIsLoading] = useState(false);
 
   function handleChange(e) {
@@ -35,7 +37,8 @@ export default function SignUp() {
 
     promise.then(() => {
       setIsLoading(false);
-      navigate("/sign-in");
+      setVisibility("hidden");
+      navigate("/");
     });
     promise.catch((err) => {
       setIsLoading(false);
@@ -49,6 +52,7 @@ export default function SignUp() {
     <Content>
       <div className="request">
         <Logo />
+
         <Form>
           <h1>Cadastro</h1>
 

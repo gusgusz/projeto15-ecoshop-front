@@ -2,9 +2,17 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import Url from "../services/Api.js";
 import axios from "axios";
+import Menu from "./Menu";
+import { authContext } from "../App";
+import { useContext } from "react";
 
 export default function HomePage({ cartItens, setCartItens }) {
   const [listProducts, setListProducts] = useState([]);
+  const { setVisibility } = useContext(authContext);
+
+  function handleMenu() {
+    setVisibility("visible");
+  }
 
   useEffect(() => {
     const promise = axios.get(`${Url}/products`);
@@ -18,8 +26,6 @@ export default function HomePage({ cartItens, setCartItens }) {
       console.log(err.response.data);
     });
   }, []);
-
-  function addCart() {}
 
   return (
     <Content>
@@ -40,12 +46,7 @@ export default function HomePage({ cartItens, setCartItens }) {
             <p>{cartItens.length > 0 ? cartItens.length : ""}</p>
           </div>
           <div className="menu">
-            <ion-icon
-              onClick={() => {
-                console.log("hi");
-              }}
-              name="menu-outline"
-            ></ion-icon>
+            <ion-icon onClick={handleMenu} name="menu-outline"></ion-icon>
           </div>
         </div>
       </header>
@@ -74,6 +75,8 @@ export default function HomePage({ cartItens, setCartItens }) {
           </div>
         ))}
       </ListContainer>
+
+      <Menu />
     </Content>
   );
 }

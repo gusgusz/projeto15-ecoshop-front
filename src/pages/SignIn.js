@@ -12,6 +12,7 @@ export default function SignIn() {
   const navigate = useNavigate();
   const { setAuth } = useContext(authContext);
   const [isLoading, setIsLoading] = useState(false);
+  const { setVisibility } = useContext(authContext);
 
   const [form, setForm] = useState({
     email: "",
@@ -34,7 +35,8 @@ export default function SignIn() {
     promise.then((response) => {
       setIsLoading(false);
       setAuth(response.data);
-      navigate("/products");
+      setVisibility("hidden");
+      navigate("/");
     });
     promise.catch((err) => {
       setIsLoading(false);
@@ -75,7 +77,7 @@ export default function SignIn() {
             Entrar
           </button>
         </Form>
-        <Link to="/">
+        <Link to="/sign-up">
           <span>Ainda não tem cadastro? Faça aqui!</span>
         </Link>
       </div>
