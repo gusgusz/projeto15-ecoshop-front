@@ -53,7 +53,7 @@ export default function SignUp() {
       <div className="request">
         <Logo />
 
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <h1>Cadastro</h1>
 
           <input
@@ -146,7 +146,7 @@ export default function SignUp() {
             placeholder="Confirme a senha"
             required
           />
-          <button disabled={isLoading} onClick={handleSubmit} type="submit">
+          <button disabled={isLoading} type="submit">
             Cadastrar
           </button>
         </Form>
