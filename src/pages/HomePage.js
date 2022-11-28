@@ -2,8 +2,14 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import Url from "../services/Api.js";
 import axios from "axios";
+import { authContext } from "../App";
+import { useContext } from "react";
+import { Link} from 'react-router-dom';
 
-export default function HomePage({ cartItens, setCartItens }) {
+
+export default function HomePage() {
+  const {cartItens} = useContext(authContext);
+  const {setCartItens} = useContext(authContext);
   const [listProducts, setListProducts] = useState([]);
 
   useEffect(() => {
@@ -30,15 +36,15 @@ export default function HomePage({ cartItens, setCartItens }) {
         </div>
 
         <div className="right">
+          <Link to="/payment">
           <div className="cart">
             <ion-icon
-              onClick={() => {
-                console.log("hi");
-              }}
+            
               name="cart-outline"
             ></ion-icon>{" "}
             <p>{cartItens.length > 0 ? cartItens.length : ""}</p>
           </div>
+          </Link>
           <div className="menu">
             <ion-icon
               onClick={() => {

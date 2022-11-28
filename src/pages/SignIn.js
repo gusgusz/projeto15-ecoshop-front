@@ -37,7 +37,7 @@ export default function SignIn() {
       setIsLoading(false);
       console.log("entei no then do login", response.data);
       setAuth(response.data);
-      navigate("/products");
+      navigate("/");
     });
     promise.catch((err) => {
       setIsLoading(false);

@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
+import HomePage from "./pages/HomePage";
+import PaymentCheck from "./pages/PaymentCheck";
 import { useState } from "react";
 import { createContext } from "react";
-import PaymentCheck from "./pages/PaymentCheck";
-import HomePage from "./pages/HomePage";
 
 export const authContext = createContext();
 export default function App() {
@@ -27,9 +27,10 @@ export default function App() {
         }}
       >
         <Routes>
-          <Route path="/" element={<SignUp />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/sign-in" element={<SignIn />} />
-          <Route path="/products" element={<Products />} />
+          <Route path="/sign-up" element={<SignUp />} />
+          <Route path="/payment" element={<PaymentCheck />} />
         </Routes>
       </authContext.Provider>
     </BrowserRouter>

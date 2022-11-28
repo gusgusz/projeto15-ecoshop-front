@@ -4,64 +4,30 @@ import { authContext } from '../App';
 import { useContext} from 'react';
 import axios from "axios";
 import Url from "../services/Api";
-
-
-const products = [
-  {
-    name: "COPO FIBRA DE BAMBU 793",
-  img: "https://brindeecologico.com.br/images/produtos/produto-1057348138-imgeco-12-brinde-78621810536-ecologico.jpg",
-  price: "30.00",
-  describe:"Copo 500 ml com tampa, Produzido com Fibra de Bambu, Medidas: 15 x 9,3 cm, Produto sustentável com 50% a menos de Plástico"
-},
-{
-  name: "COPO FIBRA DE BAMBU 793",
-img: "https://brindeecologico.com.br/images/produtos/produto-1057348138-imgeco-12-brinde-78621810536-ecologico.jpg",
-price: "30.00",
-describe:"Copo 500 ml com tampa, Produzido com Fibra de Bambu, Medidas: 15 x 9,3 cm, Produto sustentável com 50% a menos de Plástico"
-},
-{
-  name: "COPO FIBRA DE BAMBU 793",
-img: "https://brindeecologico.com.br/images/produtos/produto-1057348138-imgeco-12-brinde-78621810536-ecologico.jpg",
-price: "30.00",
-describe:"Copo 500 ml com tampa, Produzido com Fibra de Bambu, Medidas: 15 x 9,3 cm, Produto sustentável com 50% a menos de Plástico"
-}
-,
-{
-  name: "COPO FIBRA DE BAMBU 793",
-img: "https://brindeecologico.com.br/images/produtos/produto-1057348138-imgeco-12-brinde-78621810536-ecologico.jpg",
-price: "30.00",
-describe:"Copo 500 ml com tampa, Produzido com Fibra de Bambu, Medidas: 15 x 9,3 cm, Produto sustentável com 50% a menos de Plástico"
-},
-{
-  name: "COPO FIBRA DE BAMBU 793",
-img: "https://brindeecologico.com.br/images/produtos/produto-1057348138-imgeco-12-brinde-78621810536-ecologico.jpg",
-price: "30.00",
-describe:"Copo 500 ml com tampa, Produzido com Fibra de Bambu, Medidas: 15 x 9,3 cm, Produto sustentável com 50% a menos de Plástico"
-}
-]
-;
+import { useNavigate } from "react-router-dom";
 
 
 
 
 export default function PaymentCheck() {
 
-
+ const navigate = useNavigate();
   const { auth} = useContext(authContext);
+  const {cartItens} = useContext(authContext);
+  const {setCartItens} = useContext(authContext);
+  
   const [paymentForm, setPaymentForm] = useState(false);
 
-  useEffect(() => {
-    getTotal();
-  }, []);
+  useEffect(getTotal, []);
 
 
   const [total, setTotal] = useState(0);
 
   function tryPayment(){
     if(!auth){
-      alert("Você precisa estar logado para finalizar a compra");
+      navigate("/sign-in");
       return;
-    }
+    } 
     if(total === 0){
       alert("Você precisa adicionar produtos para finalizar a compra");
       return;
@@ -79,7 +45,7 @@ export default function PaymentCheck() {
 
   function getTotal(){
     let tot = 0;
-    products.map((p) => {
+    cartItens.map((p) => {
 
       return tot += parseInt(p.price);
     });
@@ -91,7 +57,7 @@ export default function PaymentCheck() {
         <Content>
         <h1>Confirme sua compra</h1>
         <Prod>
-          {products.map((p,index) => {
+          {cartItens.map((p,index) => {
             return (
               <div index>
                 <span> {p.name}</span>
