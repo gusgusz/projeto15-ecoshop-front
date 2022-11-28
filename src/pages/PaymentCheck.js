@@ -49,10 +49,15 @@ export default function PaymentCheck() {
         auth,
         total,
       paymentForm});
-      alert("Compra finalizada com sucesso!");
-      setCartItens([]);
-      navigate("/");
-      return;
+      promisse.then((response) => {
+        alert("Compra finalizada com sucesso!");
+        setCartItens([]);
+        navigate("/");
+        return;
+      });
+      promisse.catch((err) => {
+        console.log(err);
+      });
     }
 
   }
