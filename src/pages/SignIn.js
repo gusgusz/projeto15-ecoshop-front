@@ -19,6 +19,7 @@ export default function SignIn() {
   });
 
   function handleChange(e) {
+    
     setForm({
       ...form,
       [e.target.name]: e.target.value,
@@ -27,19 +28,21 @@ export default function SignIn() {
     console.log(form);
   }
 
-  function handleSubmit() {
+  function handleSubmit(e) {
+    e.preventDefault();
     setIsLoading(true);
     const promise = axios.post(`${Url}/sign-in`, { ...form });
 
     promise.then((response) => {
       setIsLoading(false);
+      console.log("entei no then do login", response.data);
       setAuth(response.data);
       navigate("/products");
     });
     promise.catch((err) => {
       setIsLoading(false);
 
-      alert(err.response.message);
+      console.log("catch do lofin", err);
     });
     console.log(form);
   }
@@ -49,7 +52,7 @@ export default function SignIn() {
       <Logo />
 
       <div className="request">
-        <Form>
+        <Form onSubmit={handleSubmit}>
           <h1>Login</h1>
 
           <input
@@ -71,7 +74,7 @@ export default function SignIn() {
             required
           />
 
-          <button type="submit" disabled={isLoading} onClick={handleSubmit}>
+          <button type="submit" disabled={isLoading}>
             Entrar
           </button>
         </Form>

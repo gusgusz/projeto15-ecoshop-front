@@ -4,6 +4,7 @@ import SignIn from "./pages/SignIn";
 import Products from "./pages/Products";
 import { useState } from "react";
 import { createContext } from "react";
+import PaymentCheck from "./pages/PaymentCheck";
 
 export const authContext = createContext();
 export default function App() {
@@ -13,9 +14,10 @@ export default function App() {
     <BrowserRouter>
       <authContext.Provider value={{ auth, setAuth }}>
         <Routes>
-          <Route path="/" element={<SignUp />} />
+          <Route path="/" element={<Products/>} />
           <Route path="/sign-in" element={<SignIn />} />
-          <Route path="/products" element={<Products />} />
+          <Route path="/signUp" element={<SignUp />} />
+          <Route path="/payment" element={<PaymentCheck />} />
         </Routes>
       </authContext.Provider>
     </BrowserRouter>

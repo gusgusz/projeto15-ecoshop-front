@@ -25,6 +25,10 @@ export default function Products() {
     });
   }, []);
 
+  function addProduct(){
+    console.log("add product");
+  }
+
   if (!listProducts) {
     return <div>Carregando</div>;
   }
@@ -40,9 +44,7 @@ export default function Products() {
             <span> {p.describe}</span>
             <p>R$ {p.price}</p>
             <button
-              onClick={() => {
-                console.log(p.price);
-              }}
+              onClick={addProduct}
             >
               Adicionar ao Carrinho
             </button>
