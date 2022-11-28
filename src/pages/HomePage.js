@@ -4,12 +4,12 @@ import Url from "../services/Api.js";
 import axios from "axios";
 import { authContext } from "../App";
 import { useContext } from "react";
-import { Link} from 'react-router-dom';
-
+import { Link } from "react-router-dom";
+import Menu from "./Menu";
 
 export default function HomePage() {
-  const {cartItens} = useContext(authContext);
-  const {setCartItens} = useContext(authContext);
+  const { cartItens } = useContext(authContext);
+  const { setCartItens } = useContext(authContext);
   const [listProducts, setListProducts] = useState([]);
   const { setVisibility } = useContext(authContext);
 
@@ -40,13 +40,10 @@ export default function HomePage() {
 
         <div className="right">
           <Link to="/payment">
-          <div className="cart">
-            <ion-icon
-            
-              name="cart-outline"
-            ></ion-icon>{" "}
-            <p>{cartItens.length > 0 ? cartItens.length : ""}</p>
-          </div>
+            <div className="cart">
+              <ion-icon name="cart-outline"></ion-icon>{" "}
+              <p>{cartItens.length > 0 ? cartItens.length : ""}</p>
+            </div>
           </Link>
           <div className="menu">
             <ion-icon onClick={handleMenu} name="menu-outline"></ion-icon>
