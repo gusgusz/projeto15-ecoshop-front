@@ -12,6 +12,7 @@ export default function SignIn() {
   const navigate = useNavigate();
   const { setAuth } = useContext(authContext);
   const [isLoading, setIsLoading] = useState(false);
+  const { setVisibility } = useContext(authContext);
 
   const [form, setForm] = useState({
     email: "",
@@ -36,8 +37,8 @@ export default function SignIn() {
       setIsLoading(false);
       console.log("entei no then do login", response.data);
       setAuth(response.data);
+      setVisibility("hidden");
       navigate("/");
-      
     });
     promise.catch((err) => {
       setIsLoading(false);
@@ -78,11 +79,10 @@ export default function SignIn() {
             Entrar
           </button>
         </Form>
-       
       </div>
       <Link to="/sign-up">
-          <span>Ainda não tem cadastro? Faça aqui!</span>
-        </Link>
+        <span>Ainda não tem cadastro? Faça aqui!</span>
+      </Link>
     </Content>
   );
 }
@@ -126,7 +126,6 @@ const Form = styled.form`
   height: 90%;
 
   h1 {
-    
     align-self: center;
   }
   input {
